@@ -43,6 +43,8 @@ app.get("/", (req, res) => {
   res.send("Blogify Backend is running successfully ✅");
 });
 
+
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
