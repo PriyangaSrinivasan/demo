@@ -8,7 +8,7 @@ import {
   addComment,
   editComment,
   deleteComment,
-} from "../../Redux/Slices/BlogSlice";
+} from "../../Redux/slices/BlogSlice";
 
 const BlogDetails = () => {
   const { id } = useParams();

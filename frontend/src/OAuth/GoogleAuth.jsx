@@ -3,7 +3,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { googlelogin } from "../Redux/Slices/authSlice";  
+import { googlelogin } from "../Redux/slices/authSlice";  
 import { useNavigate } from "react-router-dom";
 
 const GoogleAuth = () => {
