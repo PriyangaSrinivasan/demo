@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogById, updateBlog } from "../../Redux/slices/BlogSlice";
+import { fetchBlogById, updateBlog } from "../../Redux/slices/blogSlice";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -31,7 +31,10 @@ const EditBlog = () => {
       setFormData({
         title: singleBlog.title || "",
         content: singleBlog.content || "",
-        image: typeof singleBlog.image === "string" ? singleBlog.image : singleBlog.image?.url || "",
+        image:
+          typeof singleBlog.image === "string"
+            ? singleBlog.image
+            : singleBlog.image?.url || "",
         category: singleBlog.category || "",
       });
     }
@@ -126,7 +129,11 @@ const EditBlog = () => {
           </div>
 
           <div className="text-center">
-            <button type="submit" className="btn btn-primary me-2" disabled={updating}>
+            <button
+              type="submit"
+              className="btn btn-primary me-2"
+              disabled={updating}
+            >
               {updating ? "Updating..." : "💾 Update Blog"}
             </button>
             <button

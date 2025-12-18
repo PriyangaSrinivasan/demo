@@ -1,25 +1,27 @@
 // src/Components/CreateBlog.jsx
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createBlog } from '../../Redux/slices/BlogSlice';
-import img from "../../assets/images1.png"
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createBlog } from "../../Redux/slices/blogSlice";
+import img from "../../assets/images1.png";
 const CreateBlog = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector(state => state.blogs);
-  const { token } = useSelector(state => state.auth);
+  const { loading, error } = useSelector((state) => state.blogs);
+  const { token } = useSelector((state) => state.auth);
 
-  const [formData, setFormData] = useState({ 
-    title: "", 
+  const [formData, setFormData] = useState({
+    title: "",
     content: "",
-    image: null, 
-    category: "" 
+    image: null,
+    category: "",
   });
 
-  const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-  
-  const handleFileChange = e => setFormData({...formData, image: e.target.files[0]});
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleFileChange = (e) =>
+    setFormData({ ...formData, image: e.target.files[0] });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!token) return alert("Login first!");
     const fd = new FormData();
@@ -30,15 +32,16 @@ const CreateBlog = () => {
 
     dispatch(createBlog(fd))
       .unwrap()
-      .then(() => setFormData({ title: "", content: "", image: null, category: "" }));
+      .then(() =>
+        setFormData({ title: "", content: "", image: null, category: "" })
+      );
   };
 
   return (
-    <div className="create-blog-page position-relative  position-relative d-flex justify-content-center align-items-center" 
-  style={{ minHeight: "100vh" }}>
-   
-
-
+    <div
+      className="create-blog-page position-relative  position-relative d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
       {/* Animated image */}
       {/* <img 
         src="/assets/blog-animation.png" // replace with your animated image
@@ -46,11 +49,19 @@ const CreateBlog = () => {
         className="animated-image"
       /> */}
 
-      <div className="container" style={{position:'relative'}} >
-        <img src={img} width={350} className='position-absolute' style={{top:"-40%",right:'5%',opacity:'0.6'}}/>
-        <div className="card create-blog p-4 mx-auto border-2 py-5" style={{ maxWidth: "700px", position: "relative", zIndex: 10 }}>
+      <div className="container" style={{ position: "relative" }}>
+        <img
+          src={img}
+          width={350}
+          className="position-absolute"
+          style={{ top: "-40%", right: "5%", opacity: "0.6" }}
+        />
+        <div
+          className="card create-blog p-4 mx-auto border-2 py-5"
+          style={{ maxWidth: "700px", position: "relative", zIndex: 10 }}
+        >
           <h3 className="text-center mb-3">📝 Create Blog</h3>
-          <form onSubmit={handleSubmit} className='border-1'>
+          <form onSubmit={handleSubmit} className="border-1">
             <input
               type="text"
               name="title"
@@ -61,7 +72,7 @@ const CreateBlog = () => {
               required
             />
 
-            <textarea 
+            <textarea
               name="content"
               className="form-control mb-2"
               rows="5"
@@ -87,26 +98,25 @@ const CreateBlog = () => {
               value={formData.category}
               onChange={handleChange}
             /> */}
-            <select 
-                name="category"
-                className="form-control mb-2"
-                value={formData.category}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Category</option>
-                <option value="Technology">Technology</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Travel">Travel</option>
-                <option value="Health">Health</option>
-                <option value="Food">Food</option>
-                <option value="Education">Education</option>
-                <option value="Business">Business</option>
-          </select>
+            <select
+              name="category"
+              className="form-control mb-2"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="Technology">Technology</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Travel">Travel</option>
+              <option value="Health">Health</option>
+              <option value="Food">Food</option>
+              <option value="Education">Education</option>
+              <option value="Business">Business</option>
+            </select>
 
-
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary w-100"
               disabled={loading}
             >

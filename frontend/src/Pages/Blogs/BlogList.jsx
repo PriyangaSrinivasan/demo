@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogs, deleteBlog } from "../../Redux/slices/BlogSlice";
+import { fetchBlogs, deleteBlog } from "../../Redux/slices/blogSlice";
 import { useNavigate } from "react-router-dom";
 
 const BlogList = () => {
@@ -23,7 +23,9 @@ const BlogList = () => {
   const isOwner = (blog) => {
     const authorId = blog.author?._id || blog.author;
     const userId = user?._id || user?.id; // fallback for Google or signup user
-    return user && (user.role === "admin" || String(userId) === String(authorId));
+    return (
+      user && (user.role === "admin" || String(userId) === String(authorId))
+    );
   };
 
   if (loading) return <div className="text-center mt-5">Loading blogs...</div>;
